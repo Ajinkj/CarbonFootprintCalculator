@@ -1,0 +1,21 @@
+/* Mobile styles */
+.container {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  /* Tablet styles */
+  @media (min-width: 768px) {
+    .container {
+      max-width: 768px;
+      margin: 0 auto;
+    }
+  }
+  
+  /* Desktop styles */
+  @media (min-width: 992px) {
+    .container {
+      max-width: 992px;
+    }
+  }
+  
