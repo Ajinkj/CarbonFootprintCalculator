@@ -40,9 +40,9 @@
     <!-- <a class="btn btn-info" href="https://twitter.com/intent/tweet?text=My%20carbon%20footprint%20is%20{emissions}%20kg%20CO2e.%20Reduce%20your%20carbon%20footprint!&hashtags=CarbonFootprintCalculator,ClimateChange" target="_blank">
       <i class="fab fa-twitter"></i> Share on Twitter
     </a> -->
-    <a class="btn btn-success" href="whatsapp://send?text=My%20carbon%20footprint%20is%20{emissions}%20kg%20CO2e.%20Reduce%20your%20carbon%20footprint!%0A%0Ahttps://ajinkj.github.io/CarbonFootprintCalculator/" data-action="share/whatsapp/share" target="_blank">
-      <i class="fab fa-whatsapp"></i> Share on WhatsApp
-    </a>
+    <a class="btn btn-success" id="whatsappShareBtn" href="#" data-action="share/whatsapp/share" target="_blank">
+        <i class="fab fa-whatsapp"></i> Share on WhatsApp
+      </a>
   </div>
   <!-- ...existing code... -->
   
@@ -115,6 +115,17 @@ if (emissions > averageEmissionsIndia) {
 } else {
   comparisonText.innerText = "Congratulations! Your carbon footprint is below the average in India.";
   comparisonText.style.color = "green";
+  var whatsappShareLink = document.getElementById("whatsappShareBtn");
+
+
+// Build the share message
+var shareMessage = "My carbon footprint is " + emissions + " kg CO2e. Reduce your carbon footprint!\n Check Your Carbon Footprint Now\n";
+
+// Build the WhatsApp share link with the message and website URL
+var whatsappShareURL = "whatsapp://send?text=" + encodeURIComponent(shareMessage) + encodeURIComponent(window.location.href);
+
+// Set the updated href attribute of the WhatsApp share link
+whatsappShareLink.href = whatsappShareURL;
 }
   </script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
