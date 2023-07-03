@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Carbon Footprint Calculator - Result</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* Additional custom styling */
+    body {
+      padding-top: 50px;
+    }
+    .container {
+      max-width: 500px;
+    }
+    .result-card {
+      margin-top: 20px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="index.html">Carbon Footprint Calculator</a>
+  </nav>
+  
+  <div class="container">
+    <div class="result-card card">
+      <h5 class="card-header">Your Carbon Footprint</h5>
+      <div class="card-body">
+        <canvas id="chart"></canvas>
+        <h1 class="card-title" id="emissionsValue"></h1>
+        <p class="card-text">kg CO2e</p>
+        <p class="card-text" id="comparisonText"></p>
+        <!-- ...existing code... -->
+<div class="share-buttons">
+    <a class="btn btn-primary" href="https://www.facebook.com/sharer/sharer.php?u=https://your-website-url.com" target="_blank">
+      <i class="fab fa-facebook-f"></i> Share on Facebook
+    </a>
+    <!-- <a class="btn btn-info" href="https://twitter.com/intent/tweet?text=My%20carbon%20footprint%20is%20{emissions}%20kg%20CO2e.%20Reduce%20your%20carbon%20footprint!&hashtags=CarbonFootprintCalculator,ClimateChange" target="_blank">
+      <i class="fab fa-twitter"></i> Share on Twitter
+    </a> -->
+    <a class="btn btn-success" href="whatsapp://send?text=My%20carbon%20footprint%20is%20{emissions}%20kg%20CO2e.%20Reduce%20your%20carbon%20footprint!%0A%0Ahttps://your-website-url.com" data-action="share/whatsapp/share" target="_blank">
+      <i class="fab fa-whatsapp"></i> Share on WhatsApp
+    </a>
+  </div>
+  <!-- ...existing code... -->
+  
+      </div>
+    </div>
+    
+    <div class="result-card card">
+      <h5 class="card-header">Tips to Reduce Carbon Footprint</h5>
+      <div class="card-body">
+        <ul class="card-text">
+          <li>Use energy-efficient appliances and light bulbs</li>
+          <li>Reduce, reuse, and recycle waste</li>
+          <li>Opt for public transportation, biking, or walking whenever possible</li>
+          <li>Eat more plant-based meals and locally sourced food</li>
+          <li>Offset your carbon emissions through verified carbon offset projects</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Get the emissions value from the URL parameter
+    var urlParams = new URLSearchParams(window.location.search);
+var emissions = parseFloat(urlParams.get("emissions"));
+var averageEmissionsIndia = parseFloat(urlParams.get("averageEmissionsIndia"));
+
+// Display the emissions value on the result page
+document.getElementById("emissionsValue").innerText = emissions.toFixed(2);
+
+// Create a bar chart to visualize the emissions value and average emissions
+var chart = new Chart(document.getElementById('chart'), {
+  type: 'bar',
+  data: {
+    labels: ['Carbon Footprint'],
+    datasets: [{
+      label: 'Your Emissions (kg CO2e)',
+      data: [emissions],
+      backgroundColor: 'rgba(54, 162, 235, 0.5)',
+      borderColor: 'rgba(54, 162, 235, 1)',
+      borderWidth: 1
+    }, {
+      label: 'Average Emissions in India (kg CO2e)',
+      data: [averageEmissionsIndia],
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          precision: 0
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top'
+      }
+    }
+  }
+});
+// Display alert message based on the comparison with average emissions
+var comparisonText = document.getElementById("comparisonText");
+if (emissions > averageEmissionsIndia) {
+  comparisonText.innerText = "Your carbon footprint is above the average in India. Consider reducing your emissions.";
+  comparisonText.style.color = "red";
+} else {
+  comparisonText.innerText = "Congratulations! Your carbon footprint is below the average in India.";
+  comparisonText.style.color = "green";
+}
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
